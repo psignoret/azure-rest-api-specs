@@ -1025,6 +1025,55 @@
         }
       }
     },
+    "/{tenantID}/groups/{objectId}/appRoleAssignments": {
+      "get": {
+        "tags": [
+          "AppRoleAssignments"
+        ],
+        "operationId": "Groups_ListAppRoleAssignments",
+        "summary": "App role assignments which have been granted to the group.",
+        "description": "Retrieve the list of app role assignments that a group has been granted.",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The object ID of the group for which to get app role assignments."
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The filters to apply to the operation."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/tenantIDInPath"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The operation was successful.",
+            "schema": {
+              "$ref": "#/definitions/AppRoleAssignmentListResult"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/GraphError"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "odata.nextLink"
+        }
+      }
+    },
     "/{tenantID}/groups/{objectId}/getMemberGroups": {
       "post": {
         "tags": [
@@ -1477,6 +1526,104 @@
         }
       }
     },
+    "/{tenantID}/servicePrincipals/{objectId}/appRoleAssignedTo": {
+      "get": {
+        "tags": [
+          "AppRoleAssignments"
+        ],
+        "operationId": "ServicePrincipals_ListAppRoleAssignedTo",
+        "summary": "App role assignments which have been granted to other objects for the service principal.",
+        "description": "Retrieve a list of app role assignments that users, groups, or client service principals have been granted for this resource service principal.",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The object ID of the service principal for which to get app role assignments."
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The filters to apply to the operation."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/tenantIDInPath"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The operation was successful.",
+            "schema": {
+              "$ref": "#/definitions/AppRoleAssignmentListResult"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/GraphError"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "odata.nextLink"
+        }
+      }
+    },
+    "/{tenantID}/servicePrincipals/{objectId}/appRoleAssignments": {
+      "get": {
+        "tags": [
+          "AppRoleAssignments"
+        ],
+        "operationId": "ServicePrincipals_ListAppRoleAssignments",
+        "summary": "App role assignments which have been granted to the service principal.",
+        "description": "Retrieve the list of app role assignments that a service principal has been granted.",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The object ID of the service principal for which to get app role assignments."
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The filters to apply to the operation."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/tenantIDInPath"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The operation was successful.",
+            "schema": {
+              "$ref": "#/definitions/AppRoleAssignmentListResult"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/GraphError"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "odata.nextLink"
+        }
+      }
+    },
     "/{tenantID}/servicePrincipals/{objectId}/keyCredentials": {
       "get": {
         "tags": [
@@ -1841,6 +1988,55 @@
               "$ref": "#/definitions/GraphError"
             }
           }
+        }
+      }
+    },
+    "/{tenantID}/users/{objectId}/appRoleAssignments": {
+      "get": {
+        "tags": [
+          "AppRoleAssignments"
+        ],
+        "operationId": "Users_ListAppRoleAssignments",
+        "summary": "App role assignments which have been granted to the user.",
+        "description": "Retrieve the list of app role assignments that a user has been granted. This operation also returns app roles assigned to groups that the user is a direct member of.",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The object ID of the user for which to get app role assignments."
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The filters to apply to the operation."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/tenantIDInPath"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The operation was successful.",
+            "schema": {
+              "$ref": "#/definitions/AppRoleAssignmentListResult"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/GraphError"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "odata.nextLink"
         }
       }
     },
@@ -3289,6 +3485,69 @@
           "description": "Specifies the value of the roles claim that the application should expect in the authentication and access tokens."
         }
       }
+    },
+    "AppRoleAssignment": {
+      "type": "object",
+      "properties": {
+        "objectId": {
+          "type": "string",
+          "readOnly": true,
+          "description": "A unique identifier for the app role assignment."
+        },
+        "principalId": {
+          "type": "string",
+          "description": "The unique identifier (objectId) for the user, group or service principal being granted the app role."
+        },
+        "principalType": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The type of the assigned principal. This can either be 'User', 'Group' or 'ServicePrincipal'."
+        },
+        "principalDisplayName": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The display name of the user, group, or service principal that was granted the app role assignment."
+        },
+        "resourceId": {
+          "type": "string",
+          "description": "The unique identifier (objectId) for the resource service principal for which the assignment is made."
+        },
+        "resourceDisplayName": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The display name of the resource app's service principal to which the assignment is made."
+        },
+        "id": {
+          "type": "string",
+          "description": "The identifier (id) for the app role which is assigned to the principal. This app role must be exposed in the appRoles property on the resource application's service principal (resourceId). If the resource application has not declared any app roles, a default app role ID of 00000000-0000-0000-0000-000000000000 can be specified to signal that the principal is assigned to the resource app without any specific app roles."
+        }
+      },
+      "required": [
+        "principalId",
+        "resourceId",
+        "id"
+      ],
+      "additionalProperties": {
+        "type": "object"
+      },
+      "description": "Used to record when a user, group, or service principal is assigned an app role for an app."
+    },
+    "AppRoleAssignmentListResult": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppRoleAssignment"
+          },
+          "description": "The list of app role assignments."
+        },
+        "odata.nextLink": {
+          "type": "string",
+          "description": "The URL to get the next set of results."
+        }
+      },
+      "description": "Server response for get app role assignments API calls."
     },
     "AddOwnerParameters": {
       "type": "object",
